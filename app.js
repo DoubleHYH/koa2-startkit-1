@@ -2,6 +2,7 @@ const Koa = require('koa')
 const path = require('path')
 const Pug = require('koa-pug')
 const mount = require('mount-koa-routes')
+const bodyParser = require('koa-bodyparser')
 
 const app = new Koa
 
@@ -19,6 +20,8 @@ new Pug({
     viewPath: path.join(__dirname, 'app/views'),
     basedir: path.join(__dirname, 'app/views/extends'),
 })
+
+app.use(bodyParser())
 
 // 路由
 mount(app, path.join(__dirname, 'app/routes'), true)
