@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./bin/www -e js,pug  --exec babel-node",
+    "start": "NODE_ENV=development nodemon ./bin/www -e js,pug  --exec babel-node"
   },
   "keywords": [],
   "author": "",
