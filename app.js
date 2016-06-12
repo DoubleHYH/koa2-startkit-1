@@ -11,6 +11,7 @@ const server = require('koa-static')
 const session = require('koa-generic-session')
 const PgStore = require('koa-pg-session')
 const flash = require('koa-flash')
+const onerror = require('koa-onerror')
 
 const pgStore = new PgStore({
     host: 'localhost',
@@ -23,8 +24,10 @@ const PORT = process.env.PORT || 8080
 
 app.keys = ['uinz']
 
+onerror(app)
+
 app.use(bodyParser())
-app.use(session({ store: pgStore }))
+app.use(session({store: pgStore}))
 app.use(flash({ key: 'flash' }))
 app.use(convert(server(path.join(__dirname, 'public'))))
 
@@ -36,14 +39,8 @@ new Pug({
 })
 
 app.use(async (ctx, next) => {
-    const oldRender = ctx.render
-    const user = ctx.session.user || null
-    const flash = ctx.session.flash
-
-    ctx.render = async (tpl, locals, options, noCache) => {
-        const data = _.merge({ user, flash }, locals)
-        await oldRender.call(ctx, tpl, data, options, noCache)
-    }
+    ctx.state.user = ctx.session.user
+    ctx.state.flash = ctx.flash
     await next()
 })
 
@@ -52,4 +49,3 @@ mount(app, path.join(__dirname, 'app/routes'), true)
 pgStore.setup().then(() => {
     app.listen(PORT, () => console.log(`listen on port ${PORT}`))
 })
-

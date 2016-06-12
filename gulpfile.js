@@ -6,7 +6,7 @@ const browserSync = require('browser-sync').create()
 
 const reload = browserSync.reload
 
-gulp.task('serve', ['stylus'], () => {
+gulp.task('serve', ['stylus'], function() {
     browserSync.init({
         proxy: 'localhost:8080'
     })
@@ -14,15 +14,17 @@ gulp.task('serve', ['stylus'], () => {
     gulp.watch('./src/es2015/**/*.js', ['es2015-watch'])
 })
 
-gulp.task('es2015-watch', ['es2015'], () => reload())
+gulp.task('es2015-watch', ['es2015'], function() {
+    reload()
+})
 
-gulp.task('es2015', () => {
+gulp.task('es2015', function() {
     return gulp.src('./src/es2015/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('public/javascripts'))
 })
 
-gulp.task('stylus', () => {
+gulp.task('stylus', function() {
     return gulp.src('./src/stylus/main.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({

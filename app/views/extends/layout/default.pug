@@ -3,6 +3,7 @@ html(lang='zh')
     head
         link(rel='icon' href='/icon.png')
         link(rel='stylesheet' href='//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css')
+        link(rel='stylesheet' href='/stylesheets/main.css')
         script(src='//cdn.bootcss.com/jquery/2.2.4/jquery.min.js')
         script(src='//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js')
         script(src='/javascripts/foo.js')
@@ -10,6 +11,16 @@ html(lang='zh')
             title Default title
 
     body
+        block flash
+            if flash.type
+                .alert.alert-dismissible.flash-top(class='alert-'+flash.type)= flash.msg
+                    button.close(data-dismiss="alert" type="button")
+                        span &times;
+                script.
+                    setTimeout(function() {
+                        $('.flash-top').fadeOut()
+                    },3000)
+
         block header
             include ../header.pug
 

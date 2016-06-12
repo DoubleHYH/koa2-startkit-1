@@ -11,10 +11,13 @@ exports.show = ctx => {
 exports.auth = async ctx => {
     const { username, password } = ctx.request.body
     const _user = await user.findOne({ where: { username } }).catch(e => null)
-
     if (_user) {
         if (createHash('md5').update(password).digest('hex') === _user.password) {
             ctx.session.user = _user
+            ctx.session.flash = {
+                type: 'success',
+                msg: '登陆成功!'
+            }
             ctx.redirect('/')
         } else {
             ctx.session.user = null
