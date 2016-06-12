@@ -17,9 +17,23 @@ html(lang='zh')
                     button.close(data-dismiss="alert" type="button")
                         span &times;
                 script.
-                    setTimeout(function() {
-                        $('.flash-top').fadeOut()
-                    },3000)
+                    (function(){
+                        function timeout() {
+                            setTimeout(function() {
+                                var $flashTop = $('.flash-top')
+                                if ($flashTop.length === 0) {
+                                    return
+                                }
+                                if ($flashTop.is(':hover')) {
+                                    return timeout()
+                                }
+                                $flashTop.fadeOut(500, function() {
+                                    $flashTop.remove()
+                                })
+                            }, 5000)
+                        }
+                        timeout()
+                    })()
 
         block header
             include ../header.pug
