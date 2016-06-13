@@ -1,12 +1,35 @@
+html
+    height 100%
+body
+    padding-bottom 250px
+    min-height 100%
+    position relative
+
+// clear outline
 input
 textarea
 button
 a
     outline none !important
 
+// add transiiton
+a
+.btn
+    transition background .5s, color .5s
+
+tr
+    transition background .5s
+
 .top-alert
     position fixed
-    width 100%
-    opacity .8
+    border-top-right-radius 0
+    border-bottom-right-radius 0
+    top 100px
+    right 0
+    width auto
     z-index 999
-    
+
+@import './header'
+@import './footer'
+@import './signbox'
+@import './homepage'
