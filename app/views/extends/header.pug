@@ -1,6 +1,6 @@
-header: .navbar.navbar-default: .container
+header.navbar.navbar-default.navbar-fixed-top.transparent: .container
     .navbar-header
-        a.navbar-brand(href='/') uinz
+        a.navbar-brand(href='/') BRAND
         button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#navbar-collapse')
             span.sr-only Toggle navigation
             span.icon-bar
@@ -13,9 +13,25 @@ header: .navbar.navbar-default: .container
                     a.dropdown-toggle(href='#' data-toggle='dropdown')= user.username
                         span.caret
                     ul.dropdown-menu
-                        li: a(href='#') none
+                        li: a(href='#') 链接 1
                         li.divider
-                        li: a(href='/sign/signout') Sign out
+                        li: a(href='/sign/signout') 登出
             else
-                li: a(href='/sign/signin') Sign in
-                li: a(href='/sign/signup') Sign up
+                li: a(href='/sign/signin') 登录
+                li: a(href='/sign/signup') 注册
+script.
+    $(function() {
+        var $header = $('header')
+        var $body = $('body')
+        var $jumbotron = $('.header-jumbotron')
+        if ($jumbotron.length === 0) {
+            return $header.addClass('transparent')
+        }
+        $(window).on('scroll', function() {
+            if ($body.scrollTop() + $header.outerHeight() > $jumbotron.outerHeight()) {
+                $header.removeClass('transparent')
+            } else {
+                $header.addClass('transparent')
+            }
+        })
+    })

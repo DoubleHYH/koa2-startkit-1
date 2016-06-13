@@ -4,5 +4,30 @@ block title
     title homepage
 
 block content
-    h1= content.a
-    h1= content.b
+    include /jumbotron.pug
+    .container: .row
+        //- left
+        .col-sm-9
+            .row
+                .col-sm-3
+                    h3 数据1
+                    h4 13113
+                .col-sm-3
+                    h3 数据2
+                    h4 13113
+                .col-sm-3
+                    h3 数据2
+                    h4 13113
+                .col-sm-3
+                    h3 数据3
+                    h4 13113
+            hr
+
+            include ./left_table.pug
+
+        //- right
+        .col-sm-3
+            include ./right.pug
+
+    include ./bottom_table.pug
+
