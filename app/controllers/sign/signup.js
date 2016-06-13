@@ -10,7 +10,7 @@ exports.create = async(ctx, next) => {
     const { username, email, password } = ctx.request.body
     
     if (!username || !email || !password) {
-        ctx.flash = {
+        ctx.flash.alert = {
             type: 'info',
             msg: '请完善信息'
         }
@@ -19,7 +19,7 @@ exports.create = async(ctx, next) => {
 
     const existed = await user.findOne({ where: { username } })
     if (existed) {
-        ctx.flash = {
+        ctx.flash.alert = {
             type: 'info',
             msg: '该用户名已经存在!'
         }
@@ -33,14 +33,14 @@ exports.create = async(ctx, next) => {
     }).catch(e => null)
 
     if (_user) {
-        ctx.flash = {
+        ctx.flash.alert = {
             type: 'success',
             msg: '注册成功'
         }
         ctx.session.user = _user
         ctx.redirect('/')
     } else {
-        ctx.flash = {
+        ctx.flash.alert = {
             type: 'warning',
             msg: '注册失败!'
         }

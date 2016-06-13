@@ -2,7 +2,8 @@
 const fs = require('fs')
 const path = require('path')
 
-const requireDir = require('uinz-require-dir') // 自己写的模块 require 一个目录
+// 自己写的模块 require 一个目录, 根据目录加载控制器
+const requireDir = require('uinz-require-dir')
 
 const controllers = requireDir(__dirname)
 

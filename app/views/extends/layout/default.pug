@@ -11,29 +11,8 @@ html(lang='zh')
             title Default title
 
     body
-        block flash
-            if flash.type
-                .alert.alert-dismissible.flash-top(class='alert-'+flash.type)= flash.msg
-                    button.close(data-dismiss="alert" type="button")
-                        span &times;
-                script.
-                    (function(){
-                        function timeout() {
-                            setTimeout(function() {
-                                var $flashTop = $('.flash-top')
-                                if ($flashTop.length === 0) {
-                                    return
-                                }
-                                if ($flashTop.is(':hover')) {
-                                    return timeout()
-                                }
-                                $flashTop.fadeOut(500, function() {
-                                    $flashTop.remove()
-                                })
-                            }, 5000)
-                        }
-                        timeout()
-                    })()
+        block alert
+            include ../alert.pug
 
         block header
             include ../header.pug

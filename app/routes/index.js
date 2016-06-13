@@ -1,8 +1,7 @@
 // 首页
+const $ = require('controllers')
 const router = require('koa-router')()
 
-router.get('/', ctx => {
-    ctx.render('homepage')
-})
+router.get('/', $.homepage.show)
 
 module.exports = router

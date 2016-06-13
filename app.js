@@ -40,7 +40,8 @@ new Pug({
 
 app.use(async (ctx, next) => {
     ctx.state.user = ctx.session.user
-    ctx.state.flash = ctx.flash
+    ctx.state.alert = ctx.flash.alert
+    ctx.state.content = ctx.flash.content || {}
     await next()
 })
 
