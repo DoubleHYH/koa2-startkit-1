@@ -6,7 +6,7 @@ const Koa = require('koa')
 const Pug = require('koa-pug')
 const mount = require('mount-koa-routes')
 const bodyParser = require('koa-bodyparser')
-const convert = require('koa-convert')
+// const convert = require('koa-convert')
 const server = require('koa-static')
 const session = require('koa-generic-session')
 const PgStore = require('koa-pg-session')
@@ -19,30 +19,37 @@ const pgStore = new PgStore({
     port: 5432,
 })
 
+const isDev = !(process.env === 'production')
+
 const app = new Koa
 const PORT = process.env.PORT || 8080
 
+isDev && onerror(app)
+
 app.keys = ['uinz']
-
-onerror(app)
-
 app.use(bodyParser())
 app.use(session({store: pgStore}))
 app.use(flash({ key: 'flash' }))
-app.use(convert(server(path.join(__dirname, 'public'))))
+app.use(server(path.join(__dirname, 'public')))
 
 new Pug({
     app,
-    debug: process.env.NODE_ENV !== 'production',
+    debug: isDev,
     viewPath: path.join(__dirname, 'app/views'),
     basedir: path.join(__dirname, 'app/views/extends'),
 })
 
 app.use(async (ctx, next) => {
-    ctx.state.user = ctx.session.user
-    ctx.state.alert = ctx.flash.alert
-    ctx.state.content = ctx.flash.content || {}
+    ctx.state.content = {}
+    try {
+        delete ctx.session.user.password
+        ctx.state.user = ctx.session.user
+        ctx.state.alert = ctx.flash.alert || null
+        ctx.state.content = ctx.flash.content || {}
+    } catch(e) {}
+
     await next()
+
 })
 
 mount(app, path.join(__dirname, 'app/routes'), true)

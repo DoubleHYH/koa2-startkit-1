@@ -2,49 +2,44 @@ const { createHash } = require('crypto')
 const { user } = require('models')
 
 exports.show = (ctx) => {
-    console.log(1)
     ctx.render('sign/signup')
 }
 
 exports.create = async(ctx, next) => {
     const { username, email, password } = ctx.request.body
-    
+
     if (!username || !email || !password) {
-        ctx.flash.alert = {
-            type: 'info',
-            msg: '请完善信息'
+        ctx.session.flash = {
+            alert: { type: 'info', msg: '请完善信息' },
+            content: { username, email }
         }
         return ctx.redirect('back')
     }
 
     const existed = await user.findOne({ where: { username } })
     if (existed) {
-        ctx.flash.alert = {
-            type: 'info',
-            msg: '该用户名已经存在!'
+        ctx.session.flash = {
+            alert: { type: 'info', msg: '该用户名已经存在!' },
+            content: { username, email }
         }
         return ctx.redirect('back')
     }
 
-    const _user = await user.create({
-        username,
-        email,
-        password: createHash('md5').update(password).digest('hex')
-    }).catch(e => null)
+    const _password = createHash('md5').update(password).digest('hex')
+
+    const _user = await user.create({ username, email, password: _password }).catch(e => null)
 
     if (_user) {
-        ctx.flash.alert = {
-            type: 'success',
-            msg: '注册成功'
+        ctx.session.flash = {
+            alert: { type: 'info', msg: '注册成功' }
         }
         ctx.session.user = _user
         ctx.redirect('/')
     } else {
-        ctx.flash.alert = {
-            type: 'warning',
-            msg: '注册失败!'
+        ctx.session.flash = {
+            alert: { type: 'warning', msg: '注册失败!' },
+            content: { username, email }
         }
         ctx.redirect('back')
     }
 }
-

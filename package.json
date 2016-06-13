@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon app.js -q -e js,pug --ignore src/ --exec babel-node",
-    "gulp": "gulp"
+    "gulp": "gulp",
   },
   "keywords": [],
   "author": "",
@@ -33,9 +33,11 @@
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
+    "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-node5": "^11.1.0",
     "babel-preset-stage-0": "^6.5.0",
     "browser-sync": "^2.13.0",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
     "gulp-nodemon": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
