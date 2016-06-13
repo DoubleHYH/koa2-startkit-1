@@ -1,0 +1,22 @@
+if alert
+    .alert.alert-dismissible.top-alert(class='alert-'+alert.type)= alert.msg
+        button.close(data-dismiss="alert" type="button")
+            span &times;
+    script.
+        (function(){
+            function timeout() {
+                setTimeout(function() {
+                    var $topAlert = $('.top-alert')
+                    if ($topAlert.length === 0) {
+                        return
+                    }
+                    if ($topAlert.is(':hover')) {
+                        return timeout()
+                    }
+                    $topAlert.fadeOut(500, function() {
+                        $topAlert.remove()
+                    })
+                }, 5000)
+            }
+            timeout()
+        })()
