@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon app.js -q -e js,pug --ignore src/ --exec babel-node",
-    "gulp": "gulp",
+    "gulp": "gulp"
   },
   "keywords": [],
   "author": "",
