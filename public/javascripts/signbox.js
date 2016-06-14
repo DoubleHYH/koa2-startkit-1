@@ -1,15 +1,21 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 $(function () {
     var SignBox = function () {
         function SignBox() {
             var _this = this;
 
-            _classCallCheck(this, SignBox);
+            (0, _classCallCheck3.default)(this, SignBox);
 
             this._handleMove = function (e) {
                 _this.$header.mousedown(function (e) {
@@ -92,7 +98,7 @@ $(function () {
             this._handleMove();
         }
 
-        _createClass(SignBox, [{
+        (0, _createClass3.default)(SignBox, [{
             key: '_initHTML',
             value: function _initHTML() {
                 this.$html = $('\n                <div id="sign-pop-box">\n                    <div class="mask"></div>\n                    <div class="panel">\n                        <div class="panel-heading text-center">\n                            <i class="fa fa-times"></i>\n                            <span>登&emsp;录</span>\n                        </div>\n                        <form class="panel-body" action="/sign/signin" method="POST">\n                            <div class="form-group">\n                                <label for="sigin-username">账号</label>\n                                <input id="sigin-username" type="text" name="username" class="form-control" h-placeholder="邮箱/手机号/用户名">\n                            </div>\n                            <div class="form-group">\n                                <label for="sigin-password">密码</label>\n                                <input id="sigin-password" type="password" name="password" class="form-control" h-placeholder="请输入密码">\n                            </div>\n                            <div class="text-right">\n                                <a href="/sign/signup">还没有账号?</a>\n                                <span>|</span>\n                                <a href="#">忘记密码?</a>\n                            </div>\n                            <button type="submit" class="btn btn-block btn-primary">登&emsp;&emsp;录</button>\n                        </form>\n                    </div>\n                </div>\n            ');
@@ -129,7 +135,6 @@ $(function () {
                 });
             }
         }]);
-
         return SignBox;
     }();
 
