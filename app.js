@@ -1,23 +1,15 @@
 require('app-module-path').addPath(__dirname + '/app')
 
 const _ = require('lodash')
-const path = require('path')
 const Koa = require('koa')
 const Pug = require('koa-pug')
 const mount = require('mount-koa-routes')
 const bodyParser = require('koa-bodyparser')
-// const convert = require('koa-convert')
 const server = require('koa-static')
 const session = require('koa-generic-session')
-const PgStore = require('koa-pg-session')
+const redisStore = require('koa-redis')
 const flash = require('koa-flash')
 const onerror = require('koa-onerror')
-
-const pgStore = new PgStore({
-    host: 'localhost',
-    database: 'koa',
-    port: 5432,
-})
 
 const isDev = !(process.env === 'production')
 
@@ -28,32 +20,29 @@ isDev && onerror(app)
 
 app.keys = ['uinz']
 app.use(bodyParser())
-app.use(session({store: pgStore}))
+
+// app.use(session({store: pgStore}))
+// app.use(session2({ store: { host: '127.0.0.1', port: 6379, ttl: 3600 } }))
+app.use(session({ store: redisStore() }))
+
 app.use(flash({ key: 'flash' }))
-app.use(server(path.join(__dirname, 'public')))
+app.use(server(`${__dirname}/public`))
 
 new Pug({
     app,
     debug: isDev,
-    viewPath: path.join(__dirname, 'app/views'),
-    basedir: path.join(__dirname, 'app/views/extends'),
+    viewPath: `${__dirname}/app/views`,
+    basedir: `${__dirname}/app/views/extends`,
 })
 
-app.use(async (ctx, next) => {
-    ctx.state.content = {}
-    try {
-        delete ctx.session.user.password
-        ctx.state.user = ctx.session.user
-        ctx.state.alert = ctx.flash.alert || null
-        ctx.state.content = ctx.flash.content || {}
-    } catch(e) {}
-
+app.use(async(ctx, next) => {
+    ctx.state.user = ctx.session.user
+    ctx.state.alert = ctx.flash.alert || null
+    ctx.state.content = ctx.flash.content || {}
     await next()
-
 })
 
-mount(app, path.join(__dirname, 'app/routes'), true)
+mount(app, `${__dirname}/app/routes`, true)
 
-pgStore.setup().then(() => {
-    app.listen(PORT, () => console.log(`listen on port ${PORT}`))
-})
+app.listen(PORT, () => console.log(`listen on port ${PORT}`))
+
