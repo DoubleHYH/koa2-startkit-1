@@ -9,13 +9,13 @@ const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 
 gulp.task('es6', function() {
-    gulp.src('src/es6/**/*.js')
+    gulp.src('static_src/es6/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('public/javascripts'))
 })
 
 gulp.task('stylus', function() {
-    gulp.src('src/stylus/main.styl')
+    gulp.src('static_src/stylus/main.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({
             'include css': true,
@@ -29,6 +29,6 @@ gulp.task('stylus', function() {
 
 gulp.task('default', ['stylus', 'es6'], function() {
     browserSync.init({ proxy: 'localhost:8080' })
-    gulp.watch('src/stylus/**/*.styl', ['stylus'])
-    gulp.watch('src/es6/**/*.js', ['es6'])
+    gulp.watch('static_src/stylus/**/*.styl', ['stylus'])
+    gulp.watch('static_src/es6/**/*.js', ['es6'])
 })
