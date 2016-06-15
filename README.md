@@ -4,7 +4,7 @@
 ## 主要的包
 
 |package|  |
-|:-:|:_:|
+|:-:|:-:|
 |[koa-pug](https://github.com/chrisyip/koa-pug) | 也就是 jade 模板引擎 |
 |[Sequelize](http://docs.sequelizejs.com/en/latest/)/[Sequelize-cli](https://github.com/sequelize/cli) | ORM  |操作数据库 支持 PostgreSQL, MySQL, SQLite and MSSQL
 |[Redis](http://redis.io/) | 储存 session |
