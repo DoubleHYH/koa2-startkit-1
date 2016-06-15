@@ -16,7 +16,7 @@
 ## 目录结构
 ```
 koa@2-startkit
- |-app
+ |- app
  |  |- config 配置
  |  |
  |  |- controllers 控制器 C
@@ -32,13 +32,13 @@ koa@2-startkit
  |  |
  |  `- views 模板 M
  |
- |-public 静态资源
+ |- public 静态资源
  |  |
  |  |- javescript
  |  |
  |  `- stylesheets
  |
- `-static_src 静态资源 源文件
+ `- static_src 静态资源 源文件
     |
     |- es6
     |
