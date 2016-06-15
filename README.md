@@ -3,8 +3,8 @@
 | package | - |
 |:-:|:-|
 | [koa-pug](https://github.com/chrisyip/koa-pug) | 也就是 jade 模板引擎 |
-| [Sequelize](http://docs.sequelizejs.com/en/latest/)/[Sequelize-cli](https://github.com/sequelize/cli) | ORM 操作数据库 支持 PostgreSQL, MySQL, SQLite and MSSQL |
-| [Redis](http://redis.io/) | 储存 session |
+| [sequelize](http://docs.sequelizejs.com/en/latest/) / [sequelize-cli](https://github.com/sequelize/cli) | ORM 操作数据库 支持 PostgreSQL, MySQL, SQLite and MSSQL |
+| [redis](http://redis.io/) | 储存 session |
 | [mount-koa-routes](https://github.com/moajs/mount-koa-routes) | 根据目录自动加载 routes |
 | [uinz-require-dir](https://github.com/uinz/uinz-require-dir) | 根据目录自动加载 controllers |
 | stylus | css 预编译|
