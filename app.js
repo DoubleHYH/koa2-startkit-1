@@ -1,4 +1,5 @@
 require('app-module-path').addPath(__dirname + '/app')
+require('colors')
 
 const _ = require('lodash')
 const Koa = require('koa')
@@ -44,5 +45,5 @@ app.use(async(ctx, next) => {
 
 mount(app, `${__dirname}/app/routes`, true)
 
-app.listen(PORT, () => console.log(`listen on port ${PORT}`))
+app.listen(PORT, () => console.log(`Listen on`.rainbow, `http://localhost:${PORT}`.rainbow.underline))
 

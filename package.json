@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "app-module-path": "^1.1.0",
+    "colors": "^1.1.2",
     "gulp": "^3.9.1",
     "install": "^0.8.1",
     "koa": "^2.0.0",
