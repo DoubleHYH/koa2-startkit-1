@@ -1,66 +1,52 @@
 'use strict';
 
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-$(function () {
-    var SignBox = function () {
-        function SignBox() {
-            var _this = this;
-
-            (0, _classCallCheck3.default)(this, SignBox);
-
-            this._handleMove = function (e) {
-                _this.$header.mousedown(function (e) {
+$(() => {
+    class SignBox {
+        constructor() {
+            this._handleMove = e => {
+                this.$header.mousedown(e => {
                     e.preventDefault();
                     if ($(e.target).is('.fa')) return;
-                    _this.moveInfo.active = true;
-                    _this.moveInfo.startX = e.pageX;
-                    _this.moveInfo.startY = e.pageY;
+                    this.moveInfo.active = true;
+                    this.moveInfo.startX = e.pageX;
+                    this.moveInfo.startY = e.pageY;
                 });
 
-                _this.$header.mousemove(function (e) {
+                this.$header.mousemove(e => {
                     e.preventDefault();
-                    if (!_this.moveInfo.active) return;
-                    _this.moveInfo.diffX = e.pageX - _this.moveInfo.startX;
-                    _this.moveInfo.diffY = e.pageY - _this.moveInfo.startY;
+                    if (!this.moveInfo.active) return;
+                    this.moveInfo.diffX = e.pageX - this.moveInfo.startX;
+                    this.moveInfo.diffY = e.pageY - this.moveInfo.startY;
 
-                    _this.$panel.css({
-                        transform: ['translate(', _this.moveInfo.diffX - _this.moveInfo.translateX, 'px,', _this.moveInfo.diffY - _this.moveInfo.translateY, 'px)'].join('')
+                    this.$panel.css({
+                        transform: ['translate(', this.moveInfo.diffX - this.moveInfo.translateX, 'px,', this.moveInfo.diffY - this.moveInfo.translateY, 'px)'].join('')
                     });
                 });
 
-                _this.$header.on('mouseup mouseleave', function () {
-                    _this.moveInfo.active = false;
-                    _this.moveInfo.translateX -= _this.moveInfo.diffX;
-                    _this.moveInfo.translateY -= _this.moveInfo.diffY;
-                    _this.moveInfo.diffX = _this.moveInfo.diffY = 0;
+                this.$header.on('mouseup mouseleave', () => {
+                    this.moveInfo.active = false;
+                    this.moveInfo.translateX -= this.moveInfo.diffX;
+                    this.moveInfo.translateY -= this.moveInfo.diffY;
+                    this.moveInfo.diffX = this.moveInfo.diffY = 0;
                 });
             };
 
-            this.setAction = function (url) {
-                _this.$form.attr('action', url);
+            this.setAction = url => {
+                this.$form.attr('action', url);
             };
 
-            this.show = function () {
-                _this.$html.addClass('active');
+            this.show = () => {
+                this.$html.addClass('active');
             };
 
-            this.hide = function () {
-                _this.$html.removeClass('active');
-                _this.$formGroups.removeClass('has-error');
-                setTimeout(function () {
-                    _this.$panel.css('transform', 'translate(0)');
+            this.hide = () => {
+                this.$html.removeClass('active');
+                this.$formGroups.removeClass('has-error');
+                setTimeout(() => {
+                    this.$panel.css('transform', 'translate(0)');
                 }, 500);
 
-                _this.moveInfo = {
+                this.moveInfo = {
                     active: false,
                     startX: 0,
                     startY: 0,
@@ -98,45 +84,63 @@ $(function () {
             this._handleMove();
         }
 
-        (0, _createClass3.default)(SignBox, [{
-            key: '_initHTML',
-            value: function _initHTML() {
-                this.$html = $('\n                <div id="sign-pop-box">\n                    <div class="mask"></div>\n                    <div class="panel">\n                        <div class="panel-heading text-center">\n                            <i class="fa fa-times"></i>\n                            <span>登&emsp;录</span>\n                        </div>\n                        <form class="panel-body" action="/sign/signin" method="POST">\n                            <div class="form-group">\n                                <label for="sigin-username">账号</label>\n                                <input id="sigin-username" type="text" name="username" class="form-control" h-placeholder="邮箱/手机号/用户名">\n                            </div>\n                            <div class="form-group">\n                                <label for="sigin-password">密码</label>\n                                <input id="sigin-password" type="password" name="password" class="form-control" h-placeholder="请输入密码">\n                            </div>\n                            <div class="text-right">\n                                <a href="/sign/signup">还没有账号?</a>\n                                <span>|</span>\n                                <a href="#">忘记密码?</a>\n                            </div>\n                            <button type="submit" class="btn btn-block btn-primary">登&emsp;&emsp;录</button>\n                        </form>\n                    </div>\n                </div>\n            ');
-                $('body').append(this.$html);
-            }
-        }, {
-            key: '_bindEvent',
-            value: function _bindEvent() {
-                var _this2 = this;
+        _initHTML() {
+            this.$html = $(`
+                <div id="sign-pop-box">
+                    <div class="mask"></div>
+                    <div class="panel">
+                        <div class="panel-heading text-center">
+                            <i class="fa fa-times"></i>
+                            <span>登&emsp;录</span>
+                        </div>
+                        <form class="panel-body" action="/sign/signin" method="POST">
+                            <div class="form-group">
+                                <label for="sigin-username">账号</label>
+                                <input id="sigin-username" type="text" name="username" class="form-control" h-placeholder="邮箱/手机号/用户名">
+                            </div>
+                            <div class="form-group">
+                                <label for="sigin-password">密码</label>
+                                <input id="sigin-password" type="password" name="password" class="form-control" h-placeholder="请输入密码">
+                            </div>
+                            <div class="text-right">
+                                <a href="/sign/signup">还没有账号?</a>
+                                <span>|</span>
+                                <a href="#">忘记密码?</a>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary">登&emsp;&emsp;录</button>
+                        </form>
+                    </div>
+                </div>
+            `);
+            $('body').append(this.$html);
+        }
+        _bindEvent() {
+            this.$mask.on('click', this.hide);
+            this.$close.on('click', this.hide);
 
-                this.$mask.on('click', this.hide);
-                this.$close.on('click', this.hide);
+            this.$inputs.on('focus', e => {
+                var $target = $(e.target);
+                $target.closest('.form-group').addClass('active');
+                setTimeout(() => {
+                    $target.attr('placeholder', $target.attr('h-placeholder'));
+                }, 200);
+            });
 
-                this.$inputs.on('focus', function (e) {
-                    var $target = $(e.target);
-                    $target.closest('.form-group').addClass('active');
-                    setTimeout(function () {
-                        $target.attr('placeholder', $target.attr('h-placeholder'));
-                    }, 200);
-                });
+            this.$inputs.on('blur', e => {
+                var $target = $(e.target);
+                if ($target.val().trim()) return;
+                $target.attr('placeholder', '').closest('.form-group').removeClass('active');
+            });
 
-                this.$inputs.on('blur', function (e) {
-                    var $target = $(e.target);
-                    if ($target.val().trim()) return;
-                    $target.attr('placeholder', '').closest('.form-group').removeClass('active');
-                });
+            this.$inputs.on('input', e => {
+                var $target = $(e.target);
 
-                this.$inputs.on('input', function (e) {
-                    var $target = $(e.target);
+                if (!$target.val()) $target.closest('.form-group').addClass('has-error');else $target.closest('.form-group').removeClass('has-error');
 
-                    if (!$target.val()) $target.closest('.form-group').addClass('has-error');else $target.closest('.form-group').removeClass('has-error');
-
-                    if (_this2.$username.val() && _this2.$password.val()) _this2.$submitBtn.attr('disabled', false);else _this2.$submitBtn.attr('disabled', true);
-                });
-            }
-        }]);
-        return SignBox;
-    }();
+                if (this.$username.val() && this.$password.val()) this.$submitBtn.attr('disabled', false);else this.$submitBtn.attr('disabled', true);
+            });
+        }
+    }
 
     window.signBox = new SignBox();
 });

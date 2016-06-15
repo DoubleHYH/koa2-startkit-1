@@ -15,7 +15,7 @@ gulp.task('es6', function() {
 })
 
 gulp.task('stylus', function() {
-    gulp.src('static_src/stylus/main.styl')
+    gulp.src('static_src/style.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({
             'include css': true,
@@ -29,6 +29,6 @@ gulp.task('stylus', function() {
 
 gulp.task('default', ['stylus', 'es6'], function() {
     browserSync.init({ proxy: 'localhost:8080' })
-    gulp.watch('static_src/stylus/**/*.styl', ['stylus'])
-    gulp.watch('static_src/es6/**/*.js', ['es6'])
+    gulp.watch('static_src/**/*.styl', ['stylus'])
+    gulp.watch('static_src/**/*.js', ['es6'])
 })
