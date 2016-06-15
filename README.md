@@ -15,4 +15,32 @@
 
 ## 目录结构
 ```
+koa@2-startkit
+ |-app
+ |  |- config 配置
+ |  |
+ |  |- controllers 控制器 C
+ |  |
+ |  |- db 数据库  M
+ |  |   |- migrations
+ |  |   |
+ |  |   |- models
+ |  |   |
+ |  |   `- seeders
+ |  |
+ |  |- routes 路由
+ |  |
+ |  `- views 模板 M
+ |
+ |-public 静态资源
+ |  |
+ |  |- javescript
+ |  |
+ |  `- stylesheets
+ |
+ `-static_src 静态资源 源文件
+    |
+    |- es6
+    |
+    `- stylus
 ```
