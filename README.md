@@ -30,7 +30,7 @@ koa@2-startkit
  |  |
  |  |- routes 路由
  |  |
- |  `- views 模板 M
+ |  `- views 模板 V
  |
  |- public 静态资源
  |  |
