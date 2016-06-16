@@ -27,8 +27,11 @@ gulp.task('stylus', function() {
         .pipe(reload({ stream: true }))
 })
 
-gulp.task('default', ['stylus', 'es6'], function() {
+gulp.task('build', ['stylus', 'es6'])
+
+gulp.task('default', ['build'], function() {
     browserSync.init({ proxy: 'localhost:8080' })
     gulp.watch('static_src/**/*.styl', ['stylus'])
     gulp.watch('static_src/**/*.js', ['es6'])
 })
+
