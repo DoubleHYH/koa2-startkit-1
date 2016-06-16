@@ -26,7 +26,13 @@ koa@2-startkit/
 ├── public/ 静态资源
 │   ├── javescript/
 │   └── stylesheets/
-└─── static_src/ 静态资源 源文件
+└── static_src/ 静态资源 源文件
     ├── es6/
     └─── stylus/
 ```
+
+
+### TODO
+- [ ] 验证码
+- [ ] 发送邮件
+- [ ] 发送短信
