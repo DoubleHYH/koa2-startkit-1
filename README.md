@@ -1,7 +1,7 @@
 # koa@2 startkit
 
 | package | - |
-|:-:|:-|
+|:-:|:-:|
 | [koa-pug](https://github.com/chrisyip/koa-pug) | 也就是 jade 模板引擎 |
 | [sequelize](http://docs.sequelizejs.com/en/latest/) / [sequelize-cli](https://github.com/sequelize/cli) | ORM 操作数据库 支持 PostgreSQL, MySQL, SQLite and MSSQL |
 | [redis](http://redis.io/) | 储存 session |
@@ -14,7 +14,7 @@
 ```
 koa@2-startkit/
 ├── app/
-|   ├── app.js 入口文件
+│   ├── app.js 入口文件
 │   ├── config/ 配置
 │   ├── controllers/ 控制器 C
 │   ├── db 数据库/  M
