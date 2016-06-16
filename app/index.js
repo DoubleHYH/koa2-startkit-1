@@ -13,17 +13,16 @@ const flash = require('koa-flash')
 const onerror = require('koa-onerror')
 
 const isDev = !(process.env === 'production')
+const PORT = process.env.PORT || 8080
 
 const app = new Koa
-const PORT = process.env.PORT || 8080
 
 isDev && onerror(app)
 
 app.keys = ['uinz']
+
 app.use(bodyParser())
-
 app.use(session({ store: redisStore() }))
-
 app.use(flash({ key: 'flash' }))
 app.use(server(`${__dirname}/../public`))
 
@@ -34,7 +33,12 @@ new Pug({
     basedir: `${__dirname}/views/extends`,
 })
 
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
+    console.log('Request Body'.yellow, `${JSON.stringify(ctx.request.body)}`.red)
+    await next()
+})
+
+app.use(async (ctx, next) => {
     ctx.state.user = ctx.session.user
     ctx.state.alert = ctx.flash.alert || null
     ctx.state.content = ctx.flash.content || {}

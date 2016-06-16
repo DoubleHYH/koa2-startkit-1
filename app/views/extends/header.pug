@@ -6,27 +6,26 @@ header.navbar.navbar-default.navbar-fixed-top.transparent: .container
             span.icon-bar
             span.icon-bar
             span.icon-bar
-    .collapse.navbar-collapse#navbar-collapse
-        ul.nav.navbar-nav.navbar-right
-            if user
-                li.dropdown
-                    a.dropdown-toggle(href='#' data-toggle='dropdown')= user.username
-                        span.caret
-                    ul.dropdown-menu
-                        li: a(href='#') 链接 1
-                        li.divider
-                        li: a(href='/sign/signout') 登出
-            else
-                li: a(href='/sign/signin') 登录
-                li: a(href='/sign/signup') 注册
+    .collapse.navbar-collapse#navbar-collapse: ul.nav.navbar-nav.navbar-right
+        if user
+            li.dropdown
+                a.dropdown-toggle(href='#' data-toggle='dropdown')= user.username
+                    span.caret
+                ul.dropdown-menu
+                    li: a(href='#') 链接 1
+                    li.divider
+                    li: a(href='/sign/out') 登出
+        else
+            li: a(href='/sign/in') 登录
+            li: a(href='/sign/up') 注册
 script.
     $(function() {
-        var $header = $('header')
         var $body = $('body')
+        var $header = $('header')
         var $jumbotron = $('.header-jumbotron')
-        if ($jumbotron.length === 0) {
+        if ($jumbotron.length === 0)
             return $header.addClass('transparent')
-        }
+
         $(window).on('scroll', function() {
             if ($body.scrollTop() + $header.outerHeight() > $jumbotron.outerHeight()) {
                 $header.removeClass('transparent')
