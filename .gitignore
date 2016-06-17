@@ -4,5 +4,5 @@ node_modules/
 .DS_Store
 *.log
 
-config/development.js
-config/production.js
+app/config/development.js
+app/config/production.js
