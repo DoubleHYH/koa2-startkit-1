@@ -3,5 +3,6 @@ node_modules/
 
 .DS_Store
 *.log
+
 config/development.js
 config/production.js
