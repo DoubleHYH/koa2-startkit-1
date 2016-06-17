@@ -1,5 +1,7 @@
 # koa@2 startkit
 
+[![Build Status](https://travis-ci.org/uinz/koa2-startkit.svg?branch=master)](https://travis-ci.org/uinz/koa2-startkit)
+
 | package | - |
 |:-:|:-:|
 | [koa-pug](https://github.com/chrisyip/koa-pug) | 也就是 jade 模板引擎 |
