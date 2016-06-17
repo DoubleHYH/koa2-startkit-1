@@ -1,3 +1,4 @@
 exports.show = (ctx, next) => {
-    ctx.render('homepage')
+  ctx.render('homepage')
 }
+

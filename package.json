@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "eslint app",
+    "test": "eslint ./",
     "gulp": "gulp",
     "server": "nodemon app -q -e js,pug --ignore src/ --exec babel-node",
-    "stop": "pm2 kill",
     "build": "NODE_ENV=production gulp build && babel app -d dist && cp -r app/views dist && node dist/index.js"
   },
   "keywords": [],

@@ -1,6 +1,4 @@
 {
   "presets": ["node5", "stage-0"],
-  "plugins": [
-
-  ]
+  "plugins": []
 }

@@ -8,6 +8,6 @@ exports.db = {
 
 exports.geetest = {
   privateKey: '648efb550115e146cbddaf6b7917e030',
-  publicKey: '98232ec93d75c2cfbc1dbf712bc810cd',
+  publicKey: '98232ec93d75c2cfbc1dbf712bc810cd'
 }
 

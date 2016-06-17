@@ -39,9 +39,9 @@ router.post('/form-validate', (ctx, next) => {
   // 对form表单的结果进行验证
   geetest.validate({ challenge, validate, seccode }, (err, result) => {
     if (err || !result) {
-      ctx.body = `<h1 style='text-align: center'>登陆失败</h1>`
+      ctx.body = '<h1 style="text-align: center">登陆失败</h1>'
     } else {
-      ctx.body = `<h1 style='text-align: center'>登陆成功</h1>`
+      ctx.body = '<h1 style="text-align: center">登陆成功</h1>'
     }
   })
 })

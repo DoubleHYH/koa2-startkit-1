@@ -1,7 +1,12 @@
 {
   "parser": "babel-eslint",
   "extends": "standard",
+  "globals": {
+    "window": true,
+    "$": true
+  },
   "rules": {
-    "quotes": "single"
+    "space-before-function-paren": 0,
+    "no-new": 0
   }
 }
