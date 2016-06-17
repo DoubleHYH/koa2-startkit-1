@@ -1,4 +1,7 @@
 dist/
 node_modules/
-*.log
+
 .DS_Store
+*.log
+config/development.js
+config/production.js
